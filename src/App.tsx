@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    fetch('/api/v1/hello')
+      .then((res) => res.json())
+      .then(({ message }) => setMessage(message));
+  }, []);
 
   return (
     <>
@@ -15,7 +22,10 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React + Analog & Nitro 🤝</h1>
+
+      <h2>API Response: { message } </h2>
+
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
