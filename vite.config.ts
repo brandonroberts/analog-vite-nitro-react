@@ -12,6 +12,11 @@ export default defineConfig({
     nitro({
       ssr: true,
       entryServer: 'src/main.server.tsx'
+    }, {
+      output: {
+        dir: '.output',
+        publicDir: '.output/public'
+      }
     })
   ]
 })
